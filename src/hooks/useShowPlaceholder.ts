@@ -10,7 +10,7 @@ function canShowPlaceholder(editor: LexicalEditor) {
 }
 
 function useShowPlaceholder(editor: LexicalEditor) {
-  const [showPlaceholder, setShowPlaceholder] = React.useState(false)
+  const [showPlaceholder, setShowPlaceholder] = React.useState(true)
 
   React.useLayoutEffect(() => {
     function setShow() {

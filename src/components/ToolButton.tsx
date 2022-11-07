@@ -1,11 +1,19 @@
 import React from 'react'
+import clsx from 'clsx'
 import styles from './ToolButton.module.css'
 
-interface ToolButtonProps extends React.ComponentProps<'button'> {}
+interface ToolButtonProps extends React.ComponentProps<'button'> {
+  size?: 'normal' | 'medium' | 'large'
+}
 
-function ToolButton({ children, ...props }: ToolButtonProps) {
+function ToolButton({
+  children,
+  className,
+  size = 'normal',
+  ...props
+}: ToolButtonProps) {
   return (
-    <button className={styles.button} {...props}>
+    <button className={clsx(styles.button, className, size)} {...props}>
       {children}
     </button>
   )

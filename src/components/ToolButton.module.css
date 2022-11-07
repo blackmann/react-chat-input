@@ -1,12 +1,28 @@
 .button {
+  align-items: center;
   aspect-ratio: 1;
   background: none;
   border: 0;
   border-radius: var(--border-radius);
   color: var(--color-medium-emphasis);
   cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  width: 2rem;
 }
 
 .button:hover {
   background-color: var(--color-surface);
+}
+
+.button svg {
+  width: 1.2rem;
+}
+
+.button:global(.medium) {
+  width: 2.2rem;
+}
+
+button:global(.medium) svg {
+  width: 1.5rem;
 }
