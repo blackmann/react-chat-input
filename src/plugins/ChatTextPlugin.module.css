@@ -1,0 +1,14 @@
+.chatInput {
+  position: relative;
+}
+
+.contentEditable {
+  outline: none;
+}
+
+.placeholder {
+  color: var(--color-medium-emphasis);
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+}

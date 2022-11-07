@@ -1,0 +1,12 @@
+.button {
+  aspect-ratio: 1;
+  background: none;
+  border: 0;
+  border-radius: var(--border-radius);
+  color: var(--color-medium-emphasis);
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-surface);
+}
