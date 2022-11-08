@@ -2,6 +2,7 @@ import ChatTextPlugin from '../plugins/ChatTextPlugin'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import React from 'react'
+import SpanNode from '../lib/span'
 
 interface ComposerProps {
   footer?: React.ReactNode
@@ -10,6 +11,7 @@ interface ComposerProps {
 
 const config = {
   namespace: 'chat-input',
+  nodes: [SpanNode],
   onError() {},
   theme: { placeholder: 'placeholder' },
 }

@@ -1,9 +1,9 @@
 import { $getSelection, RangeSelection } from 'lexical'
 
-function handleTextDeletion(event: boolean) {
+function handleNewline(event: KeyboardEvent) {
   const selection = $getSelection() as RangeSelection | null
-  selection?.deleteCharacter(event)
+  selection?.insertParagraph()
   return true
 }
 
-export default handleTextDeletion
+export default handleNewline

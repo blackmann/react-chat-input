@@ -14,3 +14,23 @@
   top: 0;
   pointer-events: none;
 }
+
+.chatInput :global(.bold) {
+  font-weight: bold;
+}
+
+.chatInput :global(.bold) {
+  font-weight: bold;
+}
+
+.chatInput :global(.strikethrough) {
+  text-decoration: line-through;
+}
+
+.chatInput :global(.italic) {
+  font-style: italic;
+}
+
+.chatInput p {
+  margin: 0.5rem 0;
+}
