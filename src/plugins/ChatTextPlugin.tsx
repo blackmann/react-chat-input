@@ -1,6 +1,6 @@
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import React from 'react'
-import registerChatTextPlugin from './registerChatTextPlugin'
+import registerChatTextPlugin from './register-chat-text-plugin'
 import styles from './ChatTextPlugin.module.css'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import useShowPlaceholder from '../hooks/useShowPlaceholder'
@@ -14,7 +14,7 @@ function ChatTextPlugin({ placeholder }: ChatTextPluginProps) {
   const showPlaceholder = useShowPlaceholder(editor)
 
   React.useEffect(() => {
-    registerChatTextPlugin(editor)
+    return registerChatTextPlugin(editor)
   }, [])
 
   return (

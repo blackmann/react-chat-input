@@ -3,6 +3,7 @@
 }
 
 .contentEditable {
+  color: var(--color-foreground);
   outline: none;
   padding: 0 0.5rem;
 }

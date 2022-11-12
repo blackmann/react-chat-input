@@ -1,8 +1,14 @@
 :root {
+  --animation-duration: 240ms;
+
   --border-radius: 0.5rem;
 
   --color-medium-emphasis: #818181;
   --color-primary: #c29b39;
   --color-on-primary: #fff;
   --color-surface: #eee;
+}
+
+html[data-theme="dark"] {
+  --color-foreground: #f2f2f2;
 }

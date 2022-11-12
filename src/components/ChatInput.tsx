@@ -1,14 +1,30 @@
-import ChatInputProvider from '../contexts/chat-input-context'
+import AutoCompletePlugin from '../plugins/AutoCompletePlugin'
 import Composer from './Composer'
 import Footer from './Footer'
+import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import React from 'react'
+import SpanNode from '../lib/span'
 import Toolbar from './Toolbar'
 
-function ChatInput() {
+import type { AutoCompletePluginProps } from '../plugins/AutoCompletePlugin'
+
+type ChatInputProps = AutoCompletePluginProps
+
+const config = {
+  namespace: 'chat-input',
+  nodes: [SpanNode],
+  onError() {},
+  theme: { placeholder: 'placeholder' },
+}
+
+function ChatInput({ autoCompleteProfiles }: ChatInputProps) {
   return (
-    <ChatInputProvider>
-      <Composer footer={<Footer />} header={<Toolbar />} />
-    </ChatInputProvider>
+    <LexicalComposer initialConfig={config}>
+      <Toolbar />
+      <AutoCompletePlugin autoCompleteProfiles={autoCompleteProfiles} />
+      <Composer />
+      <Footer />
+    </LexicalComposer>
   )
 }
 

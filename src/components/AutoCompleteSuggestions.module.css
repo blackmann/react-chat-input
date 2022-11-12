@@ -1,0 +1,11 @@
+
+.suggestion {
+  cursor: pointer;
+  display: flex;
+  padding: 0.25rem;
+  transition: background-color var(--animation-duration) ease-out;
+}
+
+.suggestion:hover {
+  background-color: var(--color-surface);
+}

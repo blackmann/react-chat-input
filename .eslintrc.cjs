@@ -14,9 +14,19 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
     'prettier/prettier': 'warn',
     'react/jsx-sort-props': 'warn',
-    'sort-imports': 'warn',
+    'sort-imports': [
+      'error',
+      {
+        allowSeparatedGroups: true,
+        ignoreCase: false,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+      },
+    ],
     'sort-keys': 'warn',
   },
   settings: {
