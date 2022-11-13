@@ -1,4 +1,5 @@
 import React from 'react'
+import shortenString from '../lib/shorten-string'
 import styles from './FilesPreview.module.css'
 import useFiles from '../hooks/use-files'
 
@@ -12,8 +13,13 @@ function FilesPreviewPlugin() {
   return (
     <div className={styles.preview}>
       {files?.map((file, index) => (
-        <div className={styles.file} key={`${file.name}-${index}`}>
-          <span>{file.name}</span>{' '}
+        <div
+          className={styles.file}
+          key={`${file.name}-${index}`}
+          title={file.name}
+        >
+          <span>{shortenString(file.name, 13)}</span>
+
           <button
             className={styles.removeButton}
             onClick={() => handleRemove(file)}

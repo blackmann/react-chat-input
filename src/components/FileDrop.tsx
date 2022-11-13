@@ -34,8 +34,8 @@ function FileDrop({ children, files, onChange }: FileDropProps) {
     setShowDropHint(true)
   }
 
-  function handleDragLeave() {
-    // setShowDropHint(false)
+  function handleDragEnd() {
+    setShowDropHint(false)
   }
 
   function handleDrop(event: React.DragEvent) {
@@ -56,7 +56,7 @@ function FileDrop({ children, files, onChange }: FileDropProps) {
     <FilesProvider files={files} onChange={onChange}>
       <div
         className={styles.fileDrop}
-        onDragEnd={handleDragLeave}
+        onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
