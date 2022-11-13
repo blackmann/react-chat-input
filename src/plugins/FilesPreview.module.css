@@ -1,0 +1,26 @@
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.file {
+  align-items: center;
+  border: 1px solid var(--color-surface);
+  border-radius: var(--border-radius);
+  display: inline-flex;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  margin-right: 0.5rem;
+  padding: 0.25rem;
+}
+
+.removeButton {
+  background: none;
+  color: var(--color-disabled);
+  border: 0;
+  margin-left: 0.5rem;
+}
+
+.removeButton:hover {
+  background-color: var(--color-surface);
+}

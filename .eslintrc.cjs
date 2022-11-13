@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', 'standard-with-typescript', 'prettier', 'jest'],
+  extends: ['plugin:react/recommended', 'standard-with-typescript', 'prettier'],
   ignorePatterns: ['**/*.css', '**/*.stories.tsx'],
   overrides: [],
   parserOptions: {
@@ -12,7 +12,7 @@ module.exports = {
     project: ['./tsconfig.json'],
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'prettier', 'jest'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',

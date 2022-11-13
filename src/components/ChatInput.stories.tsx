@@ -18,6 +18,8 @@ const autoCompleteProfiles: AutoCompleteProfile[] = [
 ]
 
 function ChatInputWithMentions() {
+  const [files, setFiles] = React.useState<File[]>([])
+
   return (
     <>
       <div className={styles.messages}>
@@ -31,6 +33,8 @@ function ChatInputWithMentions() {
         <ChatInput
           autoCompleteProfiles={autoCompleteProfiles}
           enableFormatting={false}
+          files={files}
+          onFilesChange={(files) => setFiles(files)}
         />
       </div>
     </>

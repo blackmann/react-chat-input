@@ -1,5 +1,6 @@
 import AutoCompletePlugin from '../plugins/AutoCompletePlugin'
 import Composer from './Composer'
+import FileDrop from './FileDrop'
 import Footer from './Footer'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import React from 'react'
@@ -7,9 +8,12 @@ import TagNode from '../lib/tag'
 import Toolbar from './Toolbar'
 
 import type { AutoCompletePluginProps } from '../plugins/AutoCompletePlugin'
+import FilesPreviewPlugin from '../plugins/FilesPreviewPlugin'
 
 interface ChatInputProps extends AutoCompletePluginProps {
   enableFormatting?: boolean
+  files?: File[]
+  onFilesChange?: (files: File[]) => void
 }
 
 const config = {
@@ -21,13 +25,21 @@ const config = {
   theme: { placeholder: 'placeholder' },
 }
 
-function ChatInput({ autoCompleteProfiles, enableFormatting }: ChatInputProps) {
+function ChatInput({
+  autoCompleteProfiles,
+  enableFormatting,
+  files,
+  onFilesChange,
+}: ChatInputProps) {
   return (
     <LexicalComposer initialConfig={config}>
-      <Toolbar enabled={enableFormatting} />
-      <AutoCompletePlugin autoCompleteProfiles={autoCompleteProfiles} />
-      <Composer />
-      <Footer />
+      <FileDrop files={files} onChange={onFilesChange}>
+        <Toolbar enabled={enableFormatting} />
+        <AutoCompletePlugin autoCompleteProfiles={autoCompleteProfiles} />
+        <Composer />
+        <FilesPreviewPlugin />
+        <Footer />
+      </FileDrop>
     </LexicalComposer>
   )
 }
