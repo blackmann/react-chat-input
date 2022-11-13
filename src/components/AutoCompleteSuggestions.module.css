@@ -9,3 +9,18 @@
 .suggestion:hover {
   background-color: var(--color-surface);
 }
+
+.suggestions {
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-surface);
+  bottom: 0;
+  max-height: 17rem;
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+}
+
+.suggestionsWrapper {
+  position: relative;
+}

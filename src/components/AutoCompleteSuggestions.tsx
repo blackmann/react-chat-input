@@ -35,7 +35,8 @@ function AutoCompleteSuggestions({
   }
 
   return (
-    <div>
+    <div className={styles.suggestionsWrapper}>
+      <div className={styles.suggestions}>
       {filtered?.map((candidate, index) => (
         <div
           className={styles.suggestion}
@@ -45,6 +46,7 @@ function AutoCompleteSuggestions({
           {profile.render(candidate)}
         </div>
       ))}
+    </div>
     </div>
   )
 }

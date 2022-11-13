@@ -5,11 +5,12 @@ import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import React from 'react'
 import TagNode from '../lib/tag'
 import Toolbar from './Toolbar'
-import TreeViewPlugin from '../plugins/TreeViewPlugin'
 
 import type { AutoCompletePluginProps } from '../plugins/AutoCompletePlugin'
 
-type ChatInputProps = AutoCompletePluginProps
+interface ChatInputProps extends AutoCompletePluginProps {
+  enableFormatting?: boolean
+}
 
 const config = {
   namespace: 'chat-input',
@@ -20,14 +21,13 @@ const config = {
   theme: { placeholder: 'placeholder' },
 }
 
-function ChatInput({ autoCompleteProfiles }: ChatInputProps) {
+function ChatInput({ autoCompleteProfiles, enableFormatting }: ChatInputProps) {
   return (
     <LexicalComposer initialConfig={config}>
-      <Toolbar />
+      <Toolbar enabled={enableFormatting} />
       <AutoCompletePlugin autoCompleteProfiles={autoCompleteProfiles} />
       <Composer />
       <Footer />
-      <TreeViewPlugin />
     </LexicalComposer>
   )
 }

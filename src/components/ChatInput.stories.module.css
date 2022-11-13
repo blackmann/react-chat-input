@@ -1,0 +1,23 @@
+.chatInput {
+  border: 1px solid #eee;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.message p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.message header {
+  color: var(--color-disabled);
+  font-size: 0.8rem;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 50vh;
+  margin-bottom: 1rem;
+}
