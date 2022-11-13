@@ -7,17 +7,16 @@ function handleAutoCompleteInsert(event: AutoCompletionValue) {
   const selection = $getSelection() as RangeSelection
   const [node] = selection.getNodes()
 
-  // track to the last space
-  console.log(selection.getCharacterOffsets())
+  const [start, end] = event.textSpan.range
 
   selection.setTextNodeRange(
     node as TextNode,
-    0,
+    start,
     node as TextNode,
-    selection.anchor.offset
+    end+1
   )
 
-  $insertNodes([$createTagNode(event.prefix, event.text)])
+  $insertNodes([$createTagNode(event.textSpan.lead, event.text)])
 
   return true
 }

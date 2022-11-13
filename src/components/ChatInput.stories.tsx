@@ -7,6 +7,7 @@ const autoCompleteProfiles: AutoCompleteProfile[] = [
   {
     filter: (option: string, keyword: string) =>
       option.toLowerCase().includes(keyword.toLocaleLowerCase()),
+    matchRegex: /[\w\d]+/,
     name: 'mention',
     options: ['Not Gr', 'Jamestown', 'Janet Doe'],
     render: (option: string) => option,

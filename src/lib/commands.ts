@@ -1,8 +1,11 @@
 import { LexicalCommand, createCommand } from 'lexical'
 
-type AutoCompletionValue = SelectionValue & { prefix: string }
+interface AutoCompletionValue extends SelectionValue {
+  textSpan: TextSpanResults
+}
 
-const INSERT_AUTOCOMPLETION: LexicalCommand<AutoCompletionValue> = createCommand()
+const INSERT_AUTOCOMPLETION: LexicalCommand<AutoCompletionValue> =
+  createCommand()
 
 export { INSERT_AUTOCOMPLETION }
 

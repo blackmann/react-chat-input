@@ -11,6 +11,8 @@ declare interface SelectionValue {
 
 declare interface AutoCompleteProfile {
   filter: (option: any, keyword: string) => boolean
+  // Used to match the text for filtering candidates
+  matchRegex: RegExp
   name: string
   options: any[]
   render: (options: any) => React.ReactNode
@@ -20,7 +22,18 @@ declare interface AutoCompleteProfile {
 }
 
 declare interface AutoCompleteSuggestionsProps {
-  keyword: string | null
-  trigger: string | null
   profiles: AutoCompleteProfile[]
+  textSpan: TextSpanResults | null
+}
+
+interface MatchOption {
+  lead: string
+  regex: RegExp
+}
+
+interface TextSpanResults {
+  // The whole text (with look ahead)
+  lead: string
+  text: string
+  range: [number, number]
 }

@@ -1,27 +1,60 @@
+
+
 interface GetTextSpanOptions {
-  start: number
-  stop: string
+  cursor: number
   text: string
+  matchOptions: MatchOption[]
 }
 
-interface TextSpanResults {
-  // Then whole text (with look ahead)
-  text: string
-  range: [number, number]
-}
 
-function getTextSpan({ start, stop, text }: GetTextSpanOptions): TextSpanResults {
-  let index = start
+function getTextSpan({
+  cursor,
+  matchOptions,
+  text,
+}: GetTextSpanOptions): TextSpanResults | null {
+  const leads = matchOptions.map(({ lead }) => lead)
 
-  while (index >= 0) {
-    if (text[index] === ' ') {
+  let i = cursor - 1
+  let word = ''
+  while (i >= 0) {
+    const char = text[i]
+    if (!char || char === ' ') {
+      // TODO: or stops matching the regex
       break
     }
 
-    index -= 1
+    word = char + word
+
+    i -= 1
   }
 
-  return {}
+  let matchOption: MatchOption | null = null
+
+  const leadIndex = leads.indexOf(word[0])
+  if (leadIndex > -1) {
+    matchOption = matchOptions[leadIndex]
+  }
+
+  if (!matchOption) {
+    return null
+  }
+
+  let j = cursor
+  while (j < text.length) {
+    if (text[j] === ' ') {
+      break
+    }
+
+    word += text[j]
+
+    j++
+  }
+
+  if (!matchOption.regex.test(word)) {
+    return null
+  }
+
+  return { lead: word[0], range: [i + 1, j - 1], text: word.substring(1) }
 }
 
 export default getTextSpan

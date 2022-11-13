@@ -6,32 +6,31 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import type { AutoCompletionValue } from '../lib/commands'
 
 function AutoCompleteSuggestions({
-  trigger,
   profiles,
-  keyword,
+  textSpan,
 }: AutoCompleteSuggestionsProps) {
   const [editor] = useLexicalComposerContext()
 
   const profile = React.useMemo(() => {
-    return profiles.find((profile) => profile.trigger === trigger)
-  }, [profiles, trigger])
+    return profiles.find((profile) => profile.trigger === textSpan?.lead)
+  }, [profiles, textSpan?.lead])
 
   const filtered = React.useMemo(() => {
     return profile?.options.filter((option) =>
-      profile.filter(option, keyword ?? '')
+      profile.filter(option, textSpan?.text ?? '')
     )
-  }, [keyword, profile])
+  }, [textSpan?.text, profile])
 
   function handleSelection(candidate: any) {
     const value = profile?.select(candidate) as SelectionValue
     const selectionValue: AutoCompletionValue = {
-      prefix: trigger as string,
+      textSpan: textSpan!,
       ...value,
     }
     editor.dispatchCommand(INSERT_AUTOCOMPLETION, selectionValue)
   }
 
-  if (trigger === null || !profile) {
+  if (textSpan === null || !profile) {
     return null
   }
 

@@ -2,8 +2,9 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
-  extends: ['plugin:react/recommended', 'standard-with-typescript', 'prettier'],
+  extends: ['plugin:react/recommended', 'standard-with-typescript', 'prettier', 'jest'],
   ignorePatterns: ['**/*.css', '**/*.stories.tsx'],
   overrides: [],
   parserOptions: {

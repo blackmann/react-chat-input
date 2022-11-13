@@ -1,12 +1,10 @@
-import { EditorState, LexicalEditor } from 'lexical'
 import AutoCompleteSuggestions from '../components/AutoCompleteSuggestions'
+import { EditorState } from 'lexical'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import React from 'react'
-import getAutocompleteArgs from './get-auto-complete-args'
+import getAutocompleteArgs from '../lib/get-auto-complete-args'
 import registerAutoComplete from './register-auto-complete'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-
-import type { ScanResult } from './get-auto-complete-args'
 
 interface AutoCompletePluginProps {
   autoCompleteProfiles?: AutoCompleteProfile[]
@@ -14,17 +12,24 @@ interface AutoCompletePluginProps {
 
 function AutoCompletePlugin({ autoCompleteProfiles }: AutoCompletePluginProps) {
   const [editor] = useLexicalComposerContext()
-  const [scanResults, setScanResults] = React.useState<ScanResult>({
-    arg: null,
-    trigger: null,
-  })
+
+  const [scanResults, setScanResults] = React.useState<TextSpanResults | null>(null)
+
+  const matchOptions: MatchOption[] = React.useMemo(() => {
+    return (
+      autoCompleteProfiles?.map((profile) => ({
+        lead: profile.trigger,
+        regex: profile.matchRegex,
+      })) || []
+    )
+  }, [autoCompleteProfiles])
 
   const handleChange = React.useCallback(
-    (state: EditorState, editor: LexicalEditor) => {
-      const args = getAutocompleteArgs(state, editor)
+    (state: EditorState) => {
+      const args = getAutocompleteArgs(state, matchOptions)
       setScanResults(() => args)
     },
-    []
+    [autoCompleteProfiles]
   )
 
   React.useEffect(() => {
@@ -39,9 +44,8 @@ function AutoCompletePlugin({ autoCompleteProfiles }: AutoCompletePluginProps) {
     <>
       <OnChangePlugin onChange={handleChange} />
       <AutoCompleteSuggestions
-        keyword={scanResults.arg}
         profiles={autoCompleteProfiles}
-        trigger={scanResults.trigger}
+        textSpan={scanResults}
       />
     </>
   )
