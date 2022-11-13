@@ -29,7 +29,7 @@ function AutoCompletePlugin({ autoCompleteProfiles }: AutoCompletePluginProps) {
 
   React.useEffect(() => {
     return registerAutoComplete(editor)
-  }, [])
+  }, [editor])
 
   if (!autoCompleteProfiles || autoCompleteProfiles.length === 0) {
     return null

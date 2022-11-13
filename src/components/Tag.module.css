@@ -1,0 +1,7 @@
+.tag {
+  background-color: var(--color-surface);
+}
+
+.prefix {
+  color: var(--color-disabled)
+}

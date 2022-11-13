@@ -3,7 +3,7 @@ import React from 'react'
 import registerChatTextPlugin from './register-chat-text-plugin'
 import styles from './ChatTextPlugin.module.css'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import useShowPlaceholder from '../hooks/useShowPlaceholder'
+import useShowPlaceholder from '../hooks/use-show-placeholder'
 
 interface ChatTextPluginProps {
   placeholder?: React.ReactNode

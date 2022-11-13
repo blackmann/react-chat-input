@@ -3,11 +3,19 @@ declare module '*.module.css' {
   export default classes
 }
 
+// This is the value returned from an auto completion profile (.select)
+declare interface SelectionValue {
+  text: string
+  value: any
+}
+
 declare interface AutoCompleteProfile {
   filter: (option: any, keyword: string) => boolean
+  name: string
   options: any[]
   render: (options: any) => React.ReactNode
-  select: (option: any) => any
+  // Select returns the value that will be added to the input tags results
+  select: (option: any) => SelectionValue
   trigger: string
 }
 

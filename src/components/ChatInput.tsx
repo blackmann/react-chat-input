@@ -3,8 +3,9 @@ import Composer from './Composer'
 import Footer from './Footer'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import React from 'react'
-import SpanNode from '../lib/span'
+import TagNode from '../lib/tag'
 import Toolbar from './Toolbar'
+import TreeViewPlugin from '../plugins/TreeViewPlugin'
 
 import type { AutoCompletePluginProps } from '../plugins/AutoCompletePlugin'
 
@@ -12,8 +13,10 @@ type ChatInputProps = AutoCompletePluginProps
 
 const config = {
   namespace: 'chat-input',
-  nodes: [SpanNode],
-  onError() {},
+  nodes: [TagNode],
+  onError(error: any) {
+    console.error(error)
+  },
   theme: { placeholder: 'placeholder' },
 }
 
@@ -24,6 +27,7 @@ function ChatInput({ autoCompleteProfiles }: ChatInputProps) {
       <AutoCompletePlugin autoCompleteProfiles={autoCompleteProfiles} />
       <Composer />
       <Footer />
+      <TreeViewPlugin />
     </LexicalComposer>
   )
 }

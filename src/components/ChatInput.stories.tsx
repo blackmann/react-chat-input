@@ -7,9 +7,10 @@ const autoCompleteProfiles: AutoCompleteProfile[] = [
   {
     filter: (option: string, keyword: string) =>
       option.toLowerCase().includes(keyword.toLocaleLowerCase()),
+    name: 'mention',
     options: ['Not Gr', 'Jamestown', 'Janet Doe'],
     render: (option: string) => option,
-    select: (option: string) => option,
+    select: (option: string) => ({ text: option, value: option }),
     trigger: '@',
   },
 ]

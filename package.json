@@ -48,8 +48,8 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@lexical/react": "^0.6.0",
+    "@lexical/react": "^0.6.1-next.0",
     "clsx": "^1.2.1",
-    "lexical": "^0.6.0"
+    "lexical": "^0.6.1-next.0"
   }
 }
