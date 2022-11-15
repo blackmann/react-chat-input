@@ -7,14 +7,25 @@ import {
 import React from 'react'
 import Tag from '../components/Tag'
 
+interface TagValue {
+  prefix: string
+  text: string
+  type: string
+  value: any
+}
+
 class TagNode extends DecoratorNode<React.ReactNode> {
   prefix: string
   text: string
+  type: string
+  value: any
 
-  constructor(prefix: string, text: string, key?: NodeKey) {
+  constructor({ prefix, text, type, value }: TagValue, key?: NodeKey) {
     super(key)
     this.prefix = prefix
     this.text = text
+    this.type = type
+    this.value = value
   }
 
   createDOM(): HTMLElement {
@@ -26,7 +37,7 @@ class TagNode extends DecoratorNode<React.ReactNode> {
   }
 
   getTextContent(): string {
-    return this.text
+    return `${this.prefix}${this.text}`
   }
 
   exportJSON(): SerializedTextNode {
@@ -46,7 +57,12 @@ class TagNode extends DecoratorNode<React.ReactNode> {
   }
 
   static clone(node: TagNode): LexicalNode {
-    return new TagNode(node.prefix, node.text)
+    return new TagNode({
+      prefix: node.prefix,
+      text: node.text,
+      type: node.type,
+      value: node.value,
+    })
   }
 
   static importJSON(node: SerializedTextNode): TagNode {
@@ -54,10 +70,14 @@ class TagNode extends DecoratorNode<React.ReactNode> {
   }
 }
 
-function $createTagNode(prefix: string, text: string) {
-  return new TagNode(prefix, text)
+function $createTagNode(tagValue: TagValue) {
+  return new TagNode(tagValue)
+}
+
+function $isTagNode(node: LexicalNode) {
+  return node instanceof TagNode
 }
 
 export default TagNode
 
-export { $createTagNode }
+export { $createTagNode, $isTagNode }

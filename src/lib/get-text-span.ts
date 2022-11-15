@@ -1,18 +1,15 @@
-
-
 interface GetTextSpanOptions {
+  autoCompleteProfiles: AutoCompleteProfile[]
   cursor: number
   text: string
-  matchOptions: MatchOption[]
 }
 
-
 function getTextSpan({
+  autoCompleteProfiles,
   cursor,
-  matchOptions,
   text,
 }: GetTextSpanOptions): TextSpanResults | null {
-  const leads = matchOptions.map(({ lead }) => lead)
+  const triggers = autoCompleteProfiles.map(({ trigger }) => trigger)
 
   let i = cursor - 1
   let word = ''
@@ -28,14 +25,14 @@ function getTextSpan({
     i -= 1
   }
 
-  let matchOption: MatchOption | null = null
+  let autoCompleteProfile: AutoCompleteProfile | null = null
 
-  const leadIndex = leads.indexOf(word[0])
-  if (leadIndex > -1) {
-    matchOption = matchOptions[leadIndex]
+  const triggerIndex = triggers.indexOf(word[0])
+  if (triggerIndex > -1) {
+    autoCompleteProfile = autoCompleteProfiles[triggerIndex]
   }
 
-  if (!matchOption) {
+  if (!autoCompleteProfile) {
     return null
   }
 
@@ -50,11 +47,16 @@ function getTextSpan({
     j++
   }
 
-  if (!matchOption.regex.test(word)) {
+  if (!autoCompleteProfile.matchRegex.test(word)) {
     return null
   }
 
-  return { lead: word[0], range: [i + 1, j - 1], text: word.substring(1) }
+  return {
+    lead: word[0],
+    range: [i + 1, j - 1],
+    type: autoCompleteProfile.name,
+    typedText: word.substring(1),
+  }
 }
 
 export default getTextSpan

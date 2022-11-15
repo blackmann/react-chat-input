@@ -2,7 +2,7 @@ import ChatInput from './ChatInput'
 import React from 'react'
 import styles from './ChatInput.stories.module.css'
 
-export const SimpleChatInput = () => <ChatInput />
+export const SimpleChatInput = () => <ChatInput onSend={console.log} />
 
 const autoCompleteProfiles: AutoCompleteProfile[] = [
   {
@@ -35,6 +35,7 @@ function ChatInputWithMentions() {
           enableFormatting={false}
           files={files}
           onFilesChange={(files) => setFiles(files)}
+          onSend={console.log}
         />
       </div>
     </>

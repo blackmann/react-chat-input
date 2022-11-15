@@ -17,17 +17,19 @@ function AutoCompleteSuggestions({
 
   const filtered = React.useMemo(() => {
     return profile?.options.filter((option) =>
-      profile.filter(option, textSpan?.text ?? '')
+      profile.filter(option, textSpan?.typedText ?? '')
     )
-  }, [textSpan?.text, profile])
+  }, [textSpan?.typedText, profile])
 
   function handleSelection(candidate: any) {
     const value = profile?.select(candidate) as SelectionValue
-    const selectionValue: AutoCompletionValue = {
-      textSpan: textSpan!,
-      ...value,
+
+    const autoCompleteValue: AutoCompletionValue = {
+      selectionValue: value,
+      textSpan: textSpan as TextSpanResults,
     }
-    editor.dispatchCommand(INSERT_AUTOCOMPLETION, selectionValue)
+
+    editor.dispatchCommand(INSERT_AUTOCOMPLETION, autoCompleteValue)
   }
 
   if (textSpan === null || !profile) {
@@ -37,16 +39,16 @@ function AutoCompleteSuggestions({
   return (
     <div className={styles.suggestionsWrapper}>
       <div className={styles.suggestions}>
-      {filtered?.map((candidate, index) => (
-        <div
-          className={styles.suggestion}
-          key={index}
-          onClick={() => handleSelection(candidate)}
-        >
-          {profile.render(candidate)}
-        </div>
-      ))}
-    </div>
+        {filtered?.map((candidate, index) => (
+          <div
+            className={styles.suggestion}
+            key={index}
+            onClick={() => handleSelection(candidate)}
+          >
+            {profile.render(candidate)}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

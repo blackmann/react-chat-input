@@ -32,8 +32,22 @@ interface MatchOption {
 }
 
 interface TextSpanResults {
-  // The whole text (with look ahead)
   lead: string
-  text: string
   range: [number, number]
+  typedText: string
+  type: string
 }
+
+interface Element {
+  type: string
+  text: string
+  value: any
+}
+
+interface Data {
+  text: string
+  textElements: Element[]
+  files?: File[]
+}
+
+type OnSendCallback = (data: Data) => void

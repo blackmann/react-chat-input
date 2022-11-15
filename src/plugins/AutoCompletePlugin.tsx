@@ -13,21 +13,14 @@ interface AutoCompletePluginProps {
 function AutoCompletePlugin({ autoCompleteProfiles }: AutoCompletePluginProps) {
   const [editor] = useLexicalComposerContext()
 
-  const [scanResults, setScanResults] = React.useState<TextSpanResults | null>(null)
-
-  const matchOptions: MatchOption[] = React.useMemo(() => {
-    return (
-      autoCompleteProfiles?.map((profile) => ({
-        lead: profile.trigger,
-        regex: profile.matchRegex,
-      })) || []
-    )
-  }, [autoCompleteProfiles])
+  const [scanResults, setScanResults] = React.useState<TextSpanResults | null>(
+    null
+  )
 
   const handleChange = React.useCallback(
     (state: EditorState) => {
-      const args = getAutocompleteArgs(state, matchOptions)
-      setScanResults(() => args)
+      const args = getAutocompleteArgs(state, autoCompleteProfiles ?? [])
+      setScanResults(args)
     },
     [autoCompleteProfiles]
   )

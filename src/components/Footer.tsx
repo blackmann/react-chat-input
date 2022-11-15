@@ -1,19 +1,28 @@
-import { $generateHtmlFromNodes } from '@lexical/html'
 import { $getRoot } from 'lexical'
 import EmojiButton from './EmojiButton'
-import React from 'react'
-import styles from './Footer.module.css'
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import MentionButton from './MentionButton'
+import React from 'react'
+import parseNodes from '../lib/parse-nodes'
+import styles from './Footer.module.css'
+import useFiles from '../hooks/use-files'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 
-function Footer() {
+interface FooterProps {
+  onSend?: OnSendCallback
+}
+
+function Footer({ onSend }: FooterProps) {
   const [editor] = useLexicalComposerContext()
+  const { files } = useFiles()
 
   function handleSend() {
-    editor.update(() => {
-      const html = $generateHtmlFromNodes(editor)
-      const root = $getRoot()
-      console.log(html, root.getChildren())
+    editor.getEditorState().read(() => {
+      const parsed = parseNodes($getRoot())
+      onSend?.({
+        files,
+        text: $getRoot().getTextContent(),
+        textElements: parsed,
+      })
     })
   }
 

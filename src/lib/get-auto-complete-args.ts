@@ -1,7 +1,10 @@
 import { $getSelection, EditorState, RangeSelection } from 'lexical'
 import getTextSpan from './get-text-span'
 
-function getAutocompleteArgs(state: EditorState, matchOptions: MatchOption[]): TextSpanResults | null {
+function getAutocompleteArgs(
+  state: EditorState,
+  autoCompleteProfiles: AutoCompleteProfile[]
+): TextSpanResults | null {
   let spanResult: TextSpanResults | null = null
 
   state.read(() => {
@@ -15,7 +18,7 @@ function getAutocompleteArgs(state: EditorState, matchOptions: MatchOption[]): T
     const [node] = selection.getNodes()
     const text = node.getTextContent()
 
-    spanResult = getTextSpan({ cursor: start, matchOptions, text})
+    spanResult = getTextSpan({ autoCompleteProfiles, cursor: start, text })
   })
 
   return spanResult

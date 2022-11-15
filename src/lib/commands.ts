@@ -1,6 +1,7 @@
 import { LexicalCommand, createCommand } from 'lexical'
 
-interface AutoCompletionValue extends SelectionValue {
+interface AutoCompletionValue {
+  selectionValue: SelectionValue
   textSpan: TextSpanResults
 }
 

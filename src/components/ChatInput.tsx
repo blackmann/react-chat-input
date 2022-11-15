@@ -14,6 +14,7 @@ interface ChatInputProps extends AutoCompletePluginProps {
   enableFormatting?: boolean
   files?: File[]
   onFilesChange?: (files: File[]) => void
+  onSend: OnSendCallback
 }
 
 const config = {
@@ -30,6 +31,7 @@ function ChatInput({
   enableFormatting,
   files,
   onFilesChange,
+  onSend,
 }: ChatInputProps) {
   return (
     <LexicalComposer initialConfig={config}>
@@ -38,7 +40,7 @@ function ChatInput({
         <AutoCompletePlugin autoCompleteProfiles={autoCompleteProfiles} />
         <Composer />
         <FilesPreviewPlugin />
-        <Footer />
+        <Footer onSend={onSend} />
       </FileDrop>
     </LexicalComposer>
   )
