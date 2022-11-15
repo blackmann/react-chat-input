@@ -26,27 +26,27 @@ declare interface AutoCompleteSuggestionsProps {
   textSpan: TextSpanResults | null
 }
 
-interface MatchOption {
+declare interface MatchOption {
   lead: string
   regex: RegExp
 }
 
-interface TextSpanResults {
+declare interface TextSpanResults {
   lead: string
   range: [number, number]
   typedText: string
   type: string
 }
 
-interface Element {
+declare interface Element {
   type: string
   text: string
   value: any
 }
 
-interface Data {
+declare interface Data {
   text: string
   textElements: Element[]
 }
 
-type OnSendCallback = (data: Data) => void
+declare type OnSendCallback = (data: Data) => void
