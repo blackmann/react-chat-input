@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "module": "ESNext",
     "moduleResolution": "node",
+    "outDir": "./dist/esm",
     "strict": true,
     "target": "es6",
     "skipLibCheck": true

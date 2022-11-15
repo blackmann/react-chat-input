@@ -69,4 +69,4 @@ function FileDrop({ children, files, onChange }: FileDropProps) {
 
 export default FileDrop
 
-export { FilesContext }
+export { FilesContext, FileDropProps }
