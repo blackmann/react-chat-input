@@ -47,7 +47,6 @@ interface Element {
 interface Data {
   text: string
   textElements: Element[]
-  files?: File[]
 }
 
 type OnSendCallback = (data: Data) => void

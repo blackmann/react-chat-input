@@ -4,7 +4,6 @@ import MentionButton from './MentionButton'
 import React from 'react'
 import parseNodes from '../lib/parse-nodes'
 import styles from './Footer.module.css'
-import useFiles from '../hooks/use-files'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 
 interface FooterProps {
@@ -13,13 +12,11 @@ interface FooterProps {
 
 function Footer({ onSend }: FooterProps) {
   const [editor] = useLexicalComposerContext()
-  const { files } = useFiles()
 
   function handleSend() {
     editor.getEditorState().read(() => {
       const parsed = parseNodes($getRoot())
       onSend?.({
-        files,
         text: $getRoot().getTextContent(),
         textElements: parsed,
       })
