@@ -4,7 +4,12 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', 'standard-with-typescript', 'prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'standard-with-typescript',
+    'prettier',
+  ],
   ignorePatterns: ['**/*.css', '**/*.stories.tsx'],
   overrides: [],
   parserOptions: {

@@ -2,6 +2,9 @@ import ChatInput from './ChatInput'
 import React from 'react'
 import styles from './ChatInput.stories.module.css'
 
+import type { AutoCompleteProfile } from '../types'
+import { ChatInputRef } from '../plugins/APIRefPlugin'
+
 export const SimpleChatInput = () => <ChatInput onSend={console.log} />
 
 const autoCompleteProfiles: AutoCompleteProfile[] = [
@@ -19,6 +22,11 @@ const autoCompleteProfiles: AutoCompleteProfile[] = [
 
 function ChatInputWithMentions() {
   const [files, setFiles] = React.useState<File[]>([])
+  const ref = React.useRef<ChatInputRef>(null)
+
+  function handleSend() {
+    ref.current?.clear()
+  }
 
   return (
     <>
@@ -35,7 +43,8 @@ function ChatInputWithMentions() {
           enableFormatting={false}
           files={files}
           onFilesChange={(files) => setFiles(files)}
-          onSend={console.log}
+          onSend={handleSend}
+          ref={ref}
         />
       </div>
     </>

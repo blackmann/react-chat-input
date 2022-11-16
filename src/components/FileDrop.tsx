@@ -5,8 +5,12 @@ interface FileDropProps extends React.PropsWithChildren {
   files?: File[]
   onChange?: (files: File[]) => void
 }
+interface FileDropContextValue extends FileDropProps {
+  enabled: boolean
+}
 
-const FilesContext = React.createContext<FileDropProps>({
+const FilesContext = React.createContext<FileDropContextValue>({
+  enabled: false,
   files: [],
   onChange: () => {
     console.error('Missing `FilesProvide`')
@@ -15,7 +19,9 @@ const FilesContext = React.createContext<FileDropProps>({
 
 function FilesProvider({ children, files, onChange }: FileDropProps) {
   return (
-    <FilesContext.Provider value={{ files, onChange }}>
+    <FilesContext.Provider
+      value={{ enabled: Boolean(onChange), files, onChange }}
+    >
       {children}
     </FilesContext.Provider>
   )
@@ -69,4 +75,4 @@ function FileDrop({ children, files, onChange }: FileDropProps) {
 
 export default FileDrop
 
-export { FilesContext, FileDropProps }
+export { FilesContext, FileDropProps, FileDropContextValue }

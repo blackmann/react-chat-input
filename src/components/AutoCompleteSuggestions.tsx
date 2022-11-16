@@ -3,6 +3,11 @@ import React from 'react'
 import styles from './AutoCompleteSuggestions.module.css'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 
+import type {
+  AutoCompleteSuggestionsProps,
+  SelectionValue,
+  TextSpanResults,
+} from '../types'
 import type { AutoCompletionValue } from '../lib/commands'
 
 function AutoCompleteSuggestions({
@@ -32,7 +37,7 @@ function AutoCompleteSuggestions({
     editor.dispatchCommand(INSERT_AUTOCOMPLETION, autoCompleteValue)
   }
 
-  if (textSpan === null || !profile) {
+  if (textSpan === null || !profile || !filtered?.length) {
     return null
   }
 

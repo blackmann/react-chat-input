@@ -1,6 +1,8 @@
 import { $getSelection, EditorState, RangeSelection } from 'lexical'
 import getTextSpan from './get-text-span'
 
+import type { AutoCompleteProfile, TextSpanResults } from '../types'
+
 function getAutocompleteArgs(
   state: EditorState,
   autoCompleteProfiles: AutoCompleteProfile[]

@@ -18,7 +18,7 @@ function FilesPreviewPlugin() {
           key={`${file.name}-${index}`}
           title={file.name}
         >
-          <span>{shortenString(file.name, 13)}</span>
+          <span>{shortenString(file.name, 17)}</span>
 
           <button
             className={styles.removeButton}

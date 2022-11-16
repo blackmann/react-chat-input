@@ -6,6 +6,8 @@ import getAutocompleteArgs from '../lib/get-auto-complete-args'
 import registerAutoComplete from './register-auto-complete'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 
+import type { AutoCompleteProfile, TextSpanResults } from '../types'
+
 interface AutoCompletePluginProps {
   autoCompleteProfiles?: AutoCompleteProfile[]
 }

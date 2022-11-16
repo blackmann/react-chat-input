@@ -1,4 +1,10 @@
-import { $getSelection, $insertNodes, RangeSelection, TextNode } from 'lexical'
+import {
+  $createTextNode,
+  $getSelection,
+  $insertNodes,
+  RangeSelection,
+  TextNode,
+} from 'lexical'
 import { $createTagNode } from './tag'
 
 import type { AutoCompletionValue } from './commands'
@@ -21,6 +27,7 @@ function handleAutoCompleteInsert({
       type: textSpan.type,
       value: selectionValue.value,
     }),
+    $createTextNode(' '),
   ])
 
   return true

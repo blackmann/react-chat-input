@@ -1,9 +1,14 @@
-function handleEnter(event: KeyboardEvent) {
-  if (event.shiftKey) {
-    return false
-  }
+import { LexicalEditor } from 'lexical'
+import { SEND } from './commands'
 
-  return true
+function handleEnter(editor: LexicalEditor) {
+  return (event: KeyboardEvent) => {
+    if (event.shiftKey) {
+      return false
+    }
+
+    return editor.dispatchCommand(SEND, undefined)
+  }
 }
 
 export default handleEnter

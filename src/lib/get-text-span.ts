@@ -1,3 +1,5 @@
+import type { AutoCompleteProfile, TextSpanResults } from '../types'
+
 interface GetTextSpanOptions {
   autoCompleteProfiles: AutoCompleteProfile[]
   cursor: number

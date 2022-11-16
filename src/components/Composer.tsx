@@ -11,7 +11,7 @@ function Composer() {
 
   return (
     <>
-      <ChatTextPlugin placeholder="Enter a text…" />
+      <ChatTextPlugin placeholder="Type a message…" />
       <HistoryPlugin />
       {decorators}
     </>

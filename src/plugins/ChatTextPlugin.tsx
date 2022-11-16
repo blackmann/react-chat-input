@@ -15,7 +15,7 @@ function ChatTextPlugin({ placeholder }: ChatTextPluginProps) {
 
   React.useEffect(() => {
     return registerChatTextPlugin(editor)
-  }, [])
+  }, [editor])
 
   return (
     <div className={styles.chatInput}>

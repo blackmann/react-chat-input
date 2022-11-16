@@ -17,7 +17,7 @@ import { mergeRegister } from '@lexical/utils'
 
 interface CommandHandles {
   command: LexicalCommand<any>
-  handler: CommandListener<any>
+  handler: (editor: LexicalEditor) => CommandListener<any>
   priority: CommandListenerPriority
 }
 
@@ -52,7 +52,7 @@ const commandHandles: CommandHandles[] = [
 function registerChatTextPlugin(editor: LexicalEditor) {
   const removeListener = mergeRegister(
     ...commandHandles.map(({ command, handler, priority }) =>
-      editor.registerCommand(command, handler, priority)
+      editor.registerCommand(command, handler(editor), priority)
     )
   )
 

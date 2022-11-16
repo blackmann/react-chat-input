@@ -1,8 +1,5 @@
-import { TextFormatType } from 'lexical'
-
-function handleTextFormat(format: TextFormatType) {
-  // Handle text formatting
-  return true
+function handleTextFormat() {
+  return () => true
 }
 
 export default handleTextFormat
