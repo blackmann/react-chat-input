@@ -41,7 +41,7 @@ export interface Element {
 
 export interface Data {
   text: string
-  textElements: Element[]
+  textElements: Element[][]
 }
 
 export type OnSendCallback = (data: Data) => void

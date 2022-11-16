@@ -1,5 +1,6 @@
 .tag {
   background-color: var(--color-surface);
+  font-weight: var(--medium-weight);
 }
 
 .prefix {

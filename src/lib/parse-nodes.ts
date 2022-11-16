@@ -1,7 +1,8 @@
 import { ParagraphNode, RootNode } from 'lexical'
 import TagNode, { $isTagNode } from './tag'
+import { Element } from '../types'
 
-function parseNodes(root: RootNode) {
+function parseNodes(root: RootNode): Element[][] {
   const children = root.getChildren()
   const paragraphs: any[] = []
 
