@@ -2935,6 +2935,11 @@ emittery@^0.13.1:
   resolved "https://registry.yarnpkg.com/emittery/-/emittery-0.13.1.tgz#c04b8c3457490e0847ae51fced3af52d338e3dad"
   integrity sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==
 
+emoji-picker-element@^1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/emoji-picker-element/-/emoji-picker-element-1.13.1.tgz#721e2afb72c546f8f0b33766bd792b2dc70e4480"
+  integrity sha512-xOUYg6piwCmnYJw5Uh47rV5F2CwcFZcbfZx5jzU43gELJDbg8hrv6CBsikVe5VJSyiUH+N2QeQHc2f0h+V74PA==
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"

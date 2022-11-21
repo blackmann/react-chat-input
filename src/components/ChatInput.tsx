@@ -4,6 +4,7 @@ import Composer from './Composer'
 import FileDrop from './FileDrop'
 import FilesPreviewPlugin from '../plugins/FilesPreviewPlugin'
 import Footer from './Footer'
+import { AutoFocusPlugin as LexicalAutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { ClearEditorPlugin as LexicalClearEditorPlugin } from '@lexical/react/LexicalClearEditorPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import React from 'react'
@@ -52,6 +53,7 @@ const ChatInput = React.forwardRef(
             passedRef={ref as React.MutableRefObject<ChatInputRef> | null}
           />
           <LexicalClearEditorPlugin />
+          <LexicalAutoFocusPlugin />
         </FileDrop>
       </LexicalComposer>
     )
