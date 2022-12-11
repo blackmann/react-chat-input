@@ -6,6 +6,7 @@ import {
   KEY_ENTER_COMMAND,
   LexicalCommand,
   LexicalEditor,
+  PASTE_COMMAND,
 } from 'lexical'
 import { CommandListener, CommandListenerPriority } from 'lexical/LexicalEditor'
 import handleControlledTextInsertion from '../lib/handle-controlled-text-insertion'
@@ -13,6 +14,7 @@ import handleEnter from '../lib/handle-enter'
 import handleNewline from '../lib/handle-newline'
 import handleTextDeletion from '../lib/handle-text-deletion'
 import handleTextFormat from '../lib/handle-text-format'
+import handleTextPaste from '../lib/handle-text-paste'
 import { mergeRegister } from '@lexical/utils'
 
 interface CommandHandles {
@@ -45,6 +47,11 @@ const commandHandles: CommandHandles[] = [
   {
     command: FORMAT_TEXT_COMMAND,
     handler: handleTextFormat,
+    priority: COMMAND_PRIORITY_EDITOR,
+  },
+  {
+    command: PASTE_COMMAND,
+    handler: handleTextPaste,
     priority: COMMAND_PRIORITY_EDITOR,
   },
 ]

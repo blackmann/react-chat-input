@@ -44,6 +44,10 @@ function FileDrop({ children, files, onChange }: FileDropProps) {
     setShowDropHint(false)
   }
 
+  function addFiles(newFiles: File[]) {
+    onChange?.([...(files ?? []), ...newFiles])
+  }
+
   function handleDrop(event: React.DragEvent) {
     event.preventDefault()
 
@@ -52,10 +56,18 @@ function FileDrop({ children, files, onChange }: FileDropProps) {
     }
 
     const droppedFiles = Array.from(event.dataTransfer.files)
-    // TODO: Handle duplicate files
-    onChange?.([...(files ?? []), ...droppedFiles])
+    addFiles(droppedFiles)
 
     setShowDropHint(false)
+  }
+
+  function handleFilePaste(event: React.ClipboardEvent<HTMLDivElement>) {
+    const files = event.clipboardData.files
+    if (!files.length) {
+      return
+    }
+
+    addFiles(Array.from(files))
   }
 
   return (
@@ -65,6 +77,7 @@ function FileDrop({ children, files, onChange }: FileDropProps) {
         onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
+        onPaste={handleFilePaste}
       >
         {showDropHint && <div className={styles.dropHint}>Drop files here</div>}
         {children}

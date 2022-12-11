@@ -19,4 +19,8 @@ The missing chat input for React.
 />
 ```
 
-Please look at the [input stories](./src/components/ChatInput.stories.module.css) on the possible props/definitions.
+Please look at the [input stories](./src/components/ChatInput.stories.tsx) on the possible props/definitions.
+
+## Development
+
+You can preview the chat input by running `yarn ladle:servce` during development.
